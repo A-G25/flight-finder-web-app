@@ -1,0 +1,101 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/styles.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Flight Finder{% endblock %}
+
+{% include "header.html" %}
+
+{% block content %}
+<div class="container flight-details">
+  <form action="{{url_for('flight_search')}}" method="GET">
+  <div class="row">
+      <div class="col-sm-4 col-sm-offset-2">
+          <div class="form-group">
+              {{ form.departure_city.label }}
+              {{ form.departure_city(class="form-control", id="departCity", placeholder="London") }}
+              <small class="form-text text-muted">(This can be any city in the world with an airport)</small>
+              {% if 'departure_city' in form.errors %}
+                <small class="form-text text-muted" style="color: red">{{ form.errors.get('departure_city') }}</small>
+              {% endif %}
+          </div>
+      </div>
+      <div class="col-sm-4 col-sm-offset-0 form-group">
+          {{ form.arrival_city.label }}
+          {{ form.arrival_city(class="form-control", id="arriveCity", placeholder="Paris, Tokyo") }}
+          <small class="form-text text-muted">(Search multiple cities by separating them with a comma)</small>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-4 col-sm-offset-2">
+          <div class="form-group">
+              {{ form.earliest_departure.label }}
+              {{ form.earliest_departure(class="form-control", id="earliestDeparture") }}
+              {% if 'earliest_departure' in form.errors %}
+              {% for error in form.errors.earliest_departure %}
+              <small class="form-text text-muted" style="color: red">{{error}}</small>
+              {% endfor %}
+              {% endif %}
+          </div>
+          <div class="form-group">
+              {{ form.latest_departure.label }}
+              {{ form.latest_departure(class="form-control", id="latestDeparture") }}
+              {% if 'latest_departure' in form.errors %}
+                {% for error in form.errors.latest_departure %}
+                    <small class="form-text text-muted" style="color: red">{{error}}</small><br>
+                {% endfor %}
+              {% endif %}
+          </div>
+          <div class="form-group">
+              {{ form.max_stopovers.label }}
+              {{ form.max_stopovers(class="form-control", id="maxStops") }}
+          </div>
+      </div>
+      <div class="col-sm-4 col-sm-offset-0">
+          <div class="form-check">
+              {{ form.return_trip.label }}
+              {{ form.return_trip(class="form-check-input", id="Check1", type="checkbox") }}
+          </div>
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                  {{ form.min_length.label }}
+                  {{ form.min_length(class="form-control disabled-ele", id="minLength", disabled=True) }}
+                  <small class="form-text text-muted">(time between the departing and returning flight)</small>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                  {{ form.max_length.label }}
+                  {{ form.max_length(class="form-control disabled-ele", id="maxLength", disabled=True) }}
+                  {% if 'max_length' in form.errors %}
+                  {% for error in form.errors.max_length %}
+                    <small class="form-text text-muted" style="color: red">{{ error }}</small><br>
+                  {% endfor %}
+                  {% endif %}
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-2 col-sm-offset-5">
+          <div class="form-group submit">
+            <span class="submit">{{ form.submit(class="btn btn-primary btn-block") }}</span>
+          </div>
+      </div>
+  </div>
+  </form>
+</div>
+
+<script> document.getElementById('Check1').onchange = function() {
+    document.getElementById('maxLength').disabled = !this.checked;
+    document.getElementById('minLength').disabled = !this.checked;
+};
+</script>
+{% endblock %}

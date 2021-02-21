@@ -1,0 +1,89 @@
+/* This CSS file will need to be added to the styling of 
+your web pages for the styles to be rendered. */
+
+a {
+    color: #ffc107;
+}
+
+body {
+    background-color: #333;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+small {
+    color:"#FFFFFF";
+}
+
+.header-fig {
+    width: 15%;
+}
+
+.align-items-bottom {
+  align-items: bottom;
+}
+
+.disabled-ele:disabled {
+  background: #bebebe;
+}
+
+.flight-details {
+    text-align: center;
+}
+
+.text-centered {
+    text-align: center;
+}
+
+.main-section hr {
+    border-style: none;
+    border-top-style: dotted;
+    border-width: 5px;
+    width: 5%;
+    border-color: grey;
+}
+
+hr {
+    width: 50%;
+    padding: 0 25%;
+}
+
+.jumbotron {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  height: 60vh;
+  color: white;
+  background-color: #333;
+}
+
+.main-section {
+    padding-bottom: 25px;
+}
+
+.space-above {
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+#maxLength:disabled {
+  background: #bebebe;
+}
+
+.header-gif {
+    width: 15%;
+}
+
+/* Media queries */
+@media (max-width: 1028px) {
+
+    .header-gif {
+        width: 50%;
+    }
+
+}
