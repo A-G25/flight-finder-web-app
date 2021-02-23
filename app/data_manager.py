@@ -25,7 +25,7 @@ class DataManager:
 
     def set_destinations(self, destination_cities):
         self.destinations = {city.strip().title(): {} for city in destination_cities.split(',')}
-        for city in self.destinations.keys():
+        for city in self.destinations:
             try:
                 self.destinations[city]['iata'] = self.find_iata_codes(city)
             except IataNotFound:
@@ -58,7 +58,7 @@ class DataManager:
             "nights_in_dst_to": kwargs["nights_in_dst_to"]
         }
 
-        for city in self.destinations.keys():
+        for city in self.destinations:
             if self.destinations[city]["iata"]:
                 query["fly_to"] = self.destinations[city]["iata"]
                 response = requests.get(
