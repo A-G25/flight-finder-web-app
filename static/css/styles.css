@@ -1,10 +1,4 @@
-/* This CSS file will need to be added to the styling of 
-your web pages for the styles to be rendered. */
-
-a {
-    color: #ffc107;
-}
-
+/***** HTML Elements *****/
 body {
     background-color: #333;
     color: white;
@@ -16,22 +10,41 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
+a {
+    color: #ffc107;
+}
+
 small {
     color:"#FFFFFF";
 }
 
-.header-fig {
+hr {
+    width: 50%;
+    padding: 0 25%;
+}
+
+
+/***** CSS Classes *****/
+/* Header */
+.header-gif {
     width: 15%;
 }
 
-.align-items-bottom {
-  align-items: bottom;
+.jumbotron {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  height: 60vh;
+  color: white;
+  background-color: #333;
 }
 
+/* Form */
 .disabled-ele:disabled {
   background: #bebebe;
 }
 
+/* Flight List */
 .flight-details {
     text-align: center;
 }
@@ -48,39 +61,12 @@ small {
     border-color: grey;
 }
 
-hr {
-    width: 50%;
-    padding: 0 25%;
-}
-
-.jumbotron {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  height: 60vh;
-  color: white;
-  background-color: #333;
-}
-
 .main-section {
     padding-bottom: 25px;
     text-align: center;
 }
 
-.space-above {
-    margin-top: 20px;
-    padding-top: 20px;
-}
-
-#maxLength:disabled {
-  background: #bebebe;
-}
-
-.header-gif {
-    width: 15%;
-}
-
-/* Media queries */
+/***** Media queries *****/
 @media (max-width: 1028px) {
 
     .header-gif {
