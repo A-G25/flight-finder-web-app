@@ -8,7 +8,8 @@ from datetime import datetime
 # Custom validators
 class NotLessThan(object):
     """
-    Verifies that the value entered in a field is not smaller than the value entered in another field.
+    Verifies that the value entered in a field is not smaller than the value
+    entered in another field.
     """
     def __init__(self, fieldname):
         self.fieldname = fieldname
@@ -17,10 +18,13 @@ class NotLessThan(object):
         try:
             other = form[self.fieldname]
         except KeyError:
-            raise ValidationError(field.gettext("Invalid field name '%s'.") % self.fieldname)
+            raise ValidationError(
+                field.gettext("Invalid field name '%s'.") % self.fieldname
+            )
 
         if int(field.data) < int(other.data):
-            message = f"{field.label.text} should be longer than {form[self.fieldname].label.text}"
+            message = f"{field.label.text} should be longer than " \
+                      f"{form[self.fieldname].label.text}"
             raise ValidationError(message)
 
 
@@ -35,8 +39,9 @@ class NotInThePast(object):
 
 class DateAfter(object):
     """
-    Verifies that the value entered in a datetime field is later than the datetime
-    entered in another field. If no other field is provided then it compares against the current date.
+    Verifies that the value entered in a datetime field is later than the
+    datetime entered in another field. If no other field is provided then it
+    compares against the current date.
     """
     def __init__(self, fieldname=''):
         self.fieldname = fieldname
@@ -49,7 +54,8 @@ class DateAfter(object):
             err_message = "Flight time cannot be in the past"
         else:
             other_field_time = other_field.data
-            err_message = f"{field.label.text} should be after '{form[self.fieldname].label.text}'"
+            err_message = f"{field.label.text} should be " \
+                          f"after '{form[self.fieldname].label.text}'"
         if field.data < other_field_time:
             raise ValidationError(err_message)
 
