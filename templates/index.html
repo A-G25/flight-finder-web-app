@@ -76,7 +76,7 @@
                       {{ form.max_length(class="form-control disabled-ele", id="maxLength", disabled=True) }}
                       {% if 'max_length' in form.errors %}
                       {% for error in form.errors.max_length %}
-                        <small class="form-text text-muted" style="color: red">{{ error }}</small><br>
+                          <small class="form-text text-muted" style="color: red">{{ error }}</small><br>
                       {% endfor %}
                       {% endif %}
                       </div>
