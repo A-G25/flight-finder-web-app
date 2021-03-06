@@ -12,46 +12,49 @@
 
 {% block content %}
 <div class="container main-section">
-    <h1 class="text-centered">
-        Flights from {{ departure_city }}
-    </h1>
+    <h2> Flights from {{ departure_city }} </h2>
     <hr>
     {% for city in destinations.keys() %}
-        <h3 class="heading">{{ city }}</h3>
-        {% if destinations[city]["flight"] %}
-            <p>
-                <img src="https://www.countryflags.io/{{destinations[city]['flight'].country_to}}/shiny/64.png">
-                <br>
-                £{{ destinations[city]["flight"].price }} to fly from {{ destinations[city]["flight"].origin_city }}
-                ({{ destinations[city]["flight"].origin_airport }}) to {{ destinations[city]["flight"].destination_city }}
-                ({{ destinations[city]["flight"].destination_airport }}).
-            </p>
-            <p>
-                Departing on {{ destinations[city]["flight"].outbound_date }}
-                {% if destinations[city]["flight"].flight_type == 'return': %}
-                    and returning on {{ destinations[city]["flight"].inbound_date }}.
-                {% else %}
-                    (this is a one-way trip with no return flight).
-                {% endif %}
-            </p>
-                {% if destinations[city]["flight"].stop_overs > 0 %}
-                    <p>
-                        The journey includes a stopover at {{ destinations[city]["flight"].via_city }}.
-                    </p>
-                {% endif %}
-            <p>
-                <a href="{{destinations[city]['flight'].booking_link}}" class="btn btn-warning btn-sm" role="button">Book this flight</a>
-            </p>
-            <hr class="flight-rule">
-        {% else %}
-            <p>
-                Sorry, there are no flights from '{{ departure_city }}' to '{{ city }}' which match your specifications.
-            </p>
-            <p>
-                Please check the city names have been input correctly and try increasing the maximum number of stopovers.
-            </p>
-            <hr class="flight-rule">
-        {% endif %}
+    <div class="card text-white mb-3">
+        <div class="card-header bg-transparent">
+            <h3 class="card-title">{{ city }}</h3>
+        </div>
+        <div class="card-body">
+            {% if destinations[city]["flight"] %}
+                <p>
+                    <img src="https://www.countryflags.io/{{destinations[city]['flight'].country_to}}/shiny/64.png">
+                    <br>
+                    £{{ destinations[city]["flight"].price }} to fly from {{ destinations[city]["flight"].origin_city }}
+                    ({{ destinations[city]["flight"].origin_airport }}) to {{ destinations[city]["flight"].destination_city }}
+                    ({{ destinations[city]["flight"].destination_airport }}).
+                </p>
+                <p>
+                    Departing on {{ destinations[city]["flight"].outbound_date }}
+                    {% if destinations[city]["flight"].flight_type == 'return': %}
+                        and returning on {{ destinations[city]["flight"].inbound_date }}.
+                    {% else %}
+                        (this is a one-way trip with no return flight).
+                    {% endif %}
+                </p>
+                    {% if destinations[city]["flight"].stop_overs > 0 %}
+                        <p>
+                            The journey includes a stopover at {{ destinations[city]["flight"].via_city }}.
+                        </p>
+                    {% endif %}
+                <p>
+                    <a href="{{destinations[city]['flight'].booking_link}}" class="btn btn-warning btn-sm" role="button">Book this flight</a>
+                </p>
+            {% else %}
+                <p>
+                    Sorry, there are no flights from '{{ departure_city }}' to '{{ city }}' which match your specifications.
+                </p>
+                <p>
+                    Please check the city names have been input correctly and try increasing the maximum number of stopovers.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
     {% endfor %}
     <div class="text-centered">
         <a href="{{url_for('home_page')}}" class="btn btn-lg btn-primary" role="button">Return to homepage</a>

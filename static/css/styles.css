@@ -21,10 +21,17 @@ small {
 hr {
     width: 50%;
     padding: 0 25%;
+    border-style: solid;
+    border-color: white;
 }
 
 
 /***** CSS Classes *****/
+/* Text */
+.text-centered {
+    text-align: center;
+}
+
 /* Header */
 .header-gif {
     width: 15%;
@@ -45,25 +52,34 @@ hr {
 }
 
 /* Flight List */
+.card {
+    background-color: #383838;
+    transition: background-color 0.5s linear;
+    width: 50%;
+    margin: 0 auto;
+    padding: 1% 0;
+    border-radius: 15px;
+}
+
+.card:hover {
+    background-color: #444;
+}
+
 .flight-details {
     text-align: center;
 }
 
-.text-centered {
+.main-section {
+    padding-bottom: 25px;
     text-align: center;
 }
 
 .main-section hr {
     border-style: none;
     border-top-style: dotted;
-    border-width: 5px;
+    border-width: 4px;
     width: 5%;
-    border-color: grey;
-}
-
-.main-section {
-    padding-bottom: 25px;
-    text-align: center;
+    border-color: #fff;
 }
 
 /***** Media queries *****/
